@@ -1,0 +1,10 @@
+FROM golang:1.23.0-alpine3.19
+
+WORKDIR /usr/src/app
+
+# Install make
+RUN apk add --no-cache make
+
+COPY . .
+
+CMD ["make", "run"]

@@ -1,0 +1,43 @@
+services:
+  webapp:
+    build: ./service
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+  #  db:
+  #    image: postgres:latest
+  #    environment:
+  #      POSTGRES_PASSWORD: example
+  #    networks:
+  #      - app-network
+
+  worker-1:
+    build: ./worker
+    command: ["sh", "-c", "curl http://webapp:8080"]
+    networks:
+      - worker-network-1
+      - app-network
+
+  worker-2:
+    build: ./worker
+    command: ["sh", "-c", "curl http://webapp:8080"]
+    networks:
+      - worker-network-2
+      - app-network
+  worker-3:
+    build: ./worker
+    command: ["sh", "-c", "curl http://webapp:8080"]
+    networks:
+      - worker-network-3
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+  worker-network-1:
+    driver: bridge
+  worker-network-2:
+    driver: bridge
+  worker-network-3:
+    driver: bridge
