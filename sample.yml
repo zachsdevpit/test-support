@@ -14,22 +14,22 @@ services:
 
   worker-1:
     build: ./worker
-    command: ["sh", "-c", "curl http://webapp:8080"]
+    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI}; done"]
     networks:
-      - worker-network-1
+      - worker-network-2
       - app-network
 
   worker-2:
     build: ./worker
-    command: ["sh", "-c", "curl http://webapp:8080"]
+    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI}; done"]
     networks:
       - worker-network-2
       - app-network
   worker-3:
     build: ./worker
-    command: ["sh", "-c", "curl http://webapp:8080"]
+    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI}; done"]
     networks:
-      - worker-network-3
+      - worker-network-2
       - app-network
 
 networks:
