@@ -14,20 +14,20 @@ services:
 
   worker-1:
     build: ./worker
-    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI}; done"]
+    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI} && ip a; done"]
     networks:
       - worker-network-2
       - app-network
 
   worker-2:
     build: ./worker
-    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI}; done"]
+    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI} && ip a; done"]
     networks:
       - worker-network-2
       - app-network
   worker-3:
     build: ./worker
-    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI}; done"]
+    command: ["sh", "-c", "while sleep ${SLEEP}s; do curl ${URI} && ip a; done"]
     networks:
       - worker-network-2
       - app-network
